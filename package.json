@@ -11,7 +11,9 @@
   "scripts": {
     "build:core": "cd packages/core && yarn build",
     "build:react": "cd packages/react && yarn build",
-    "start": "yarn build:core && yarn build:react && cd packages/react-ui && yarn start",
-    "format": "prettier --write \"./src/**/*.{ts,tsx}\""
+    "build-watch:core": "cd packages/core && yarn build:watch",
+    "build-watch:react": "cd packages/react && yarn build:watch",
+    "format": "prettier --write \"./src/**/*.{ts,tsx}\"",
+    "start": "yarn build:core && yarn build:react && cd packages/react-demo && yarn start"
   }
 }

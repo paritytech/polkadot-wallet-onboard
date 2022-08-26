@@ -1,5 +1,5 @@
 {
-  "name": "@dotsama-wallets/react-ui",
+  "name": "@dotsama-wallets/react-demo",
   "version": "1.0.0",
   "scripts": {
     "start": "webpack serve --open --config ./webpack.js"

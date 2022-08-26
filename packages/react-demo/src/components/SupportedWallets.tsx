@@ -1,9 +1,9 @@
 import { memo } from 'react';
-import { ExtensionInfo } from '@dotsama-wallets/core';
+import { DotsamaWallet, ExtensionEnabler } from '@dotsama-wallets/core';
 
 import Wallet from './Wallet';
 
-const SupportedWallets = ({ extensions }: { extensions: ExtensionInfo[] }) => {
+const SupportedWallets = ({ extensions }: { extensions: DotsamaWallet<ExtensionEnabler>[] }) => {
   if (extensions.length === 0) {
     return null;
   }

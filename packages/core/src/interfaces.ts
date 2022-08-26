@@ -17,7 +17,7 @@ export interface DotsamaWallet<T> extends DotsamaWalletBasic<T>, RawExtension {}
 
 export interface DotsamaWalletBasic<T> {
   enable: T;
+  isEnabled: () => Promise<boolean>;
   version: string;
-  // isConnected: boolean;
   name: string;
 }

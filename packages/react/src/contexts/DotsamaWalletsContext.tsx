@@ -9,6 +9,7 @@ interface DotsamaWalletsContextProviderProps {
 interface DotsamaWalletsContextProps {
   setupWallets: () => void;
   connectToExtension: (appName: string, extension: DotsamaWallet<ExtensionEnabler>) => Promise<{ injectedExtension: Injected; accounts: InjectedAccount[] }>;
+  checkIsExtensionEnabled: (extension: DotsamaWallet<ExtensionEnabler>) => Promise<boolean | null>;
   extensions: DotsamaWallet<ExtensionEnabler>[];
   otherExtensions: DotsamaWalletBasic<ExtensionEnabler>[];
 }
@@ -16,6 +17,7 @@ interface DotsamaWalletsContextProps {
 export const DotsamaWalletsContext = createContext<DotsamaWalletsContextProps>({
   setupWallets: () => {},
   connectToExtension: async () => ({ injectedExtension: {} as Injected, accounts: [] }),
+  checkIsExtensionEnabled: async () => null,
   extensions: [],
   otherExtensions: [],
 });
@@ -37,6 +39,16 @@ export const DotsamaWalletsContextProvider = ({ children }: DotsamaWalletsContex
     [extensions, otherExtensions],
   );
 
+  const checkIsExtensionEnabled = useCallback(async (extension: DotsamaWallet<ExtensionEnabler>) => {
+    if (extension.isEnabled) {
+      const result = await extension.isEnabled();
+
+      return result;
+    }
+
+    return null;
+  }, []);
+
   // initializer, gets all the extensions
   const setupWallets = () => {
     const { knownExtensions, otherExtensions } = getExtensions();
@@ -50,10 +62,11 @@ export const DotsamaWalletsContextProvider = ({ children }: DotsamaWalletsContex
     () => ({
       setupWallets,
       connectToExtension,
+      checkIsExtensionEnabled,
       extensions,
       otherExtensions,
     }),
-    [setupWallets, connectToExtension, extensions, otherExtensions],
+    [setupWallets, connectToExtension, checkIsExtensionEnabled, extensions, otherExtensions],
   );
 
   return <DotsamaWalletsContext.Provider value={contextData}>{children}</DotsamaWalletsContext.Provider>;

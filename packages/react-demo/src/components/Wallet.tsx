@@ -1,16 +1,18 @@
 import { memo, useCallback, useContext, useEffect, useState } from 'react';
 import { utils } from 'ethers';
-import { ExtensionInfo } from '@dotsama-wallets/core';
+import { DotsamaWallet, ExtensionEnabler } from '@dotsama-wallets/core';
 import { DotsamaWalletsContext } from '@dotsama-wallets/react';
 import { Injected, InjectedAccount } from '@polkadot/extension-inject/types';
-// TODO discuss about Api, potentially can be moved higher up, maybe even to core
 import { ApiPromise, WsProvider } from '@polkadot/api';
 
-const Wallet = ({ extension }: { extension: ExtensionInfo }) => {
-  const { connectToExtension } = useContext(DotsamaWalletsContext);
+import { useExtensionStatus } from '../hooks';
+
+const Wallet = ({ extension }: { extension: DotsamaWallet<ExtensionEnabler> }) => {
+  const { connectToExtension, checkIsExtensionEnabled } = useContext(DotsamaWalletsContext);
   const [accounts, setAccounts] = useState<InjectedAccount[]>([]);
   const [injector, setInjector] = useState<Injected>();
   const [api, setApi] = useState<ApiPromise | null>(null);
+  const { isExtensionEnabled, checkExtensionStatus } = useExtensionStatus(checkIsExtensionEnabled, extension);
 
   useEffect(() => {
     const setupApi = async () => {
@@ -21,11 +23,13 @@ const Wallet = ({ extension }: { extension: ExtensionInfo }) => {
     };
 
     setupApi();
+    checkExtensionStatus();
   }, []);
 
   const getAccounts = async () => {
     // TODO prevent multi-click, add try catch
-    const { injectedExtension, accounts } = await connectToExtension('dotsama-wallets', extension);
+    const { injectedExtension, accounts } = await connectToExtension('wallet-sdk', extension);
+    checkExtensionStatus();
 
     setAccounts(accounts);
     setInjector(injectedExtension);
@@ -47,9 +51,18 @@ const Wallet = ({ extension }: { extension: ExtensionInfo }) => {
     [api, injector],
   );
 
+  const computeExtensionStatus = () => {
+    if (isExtensionEnabled === null) {
+      return 'loading status';
+    }
+
+    return isExtensionEnabled ? 'Connected' : 'Disconnected'
+  }
+
   return (
     <div style={{ marginBottom: '20px' }}>
       <button onClick={getAccounts}>{`${extension.name} ${extension.version}`}</button>
+      <div>{`status: ${computeExtensionStatus()}`}</div>
       {accounts.length > 0 &&
         accounts.map(({ address, name = '' }) => (
           <div key={address} style={{ marginBottom: '10px' }}>
