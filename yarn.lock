@@ -1559,6 +1559,49 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@polkadot-onboard/core@^0.0.1-beta":
+  version "0.0.1-beta"
+  resolved "https://registry.yarnpkg.com/@polkadot-onboard/core/-/core-0.0.1-beta.tgz#af78b2e5728a1fac13b80f034cb22a593c829479"
+  integrity sha512-xdgR0xyBgCuuTbl3Ko0XI6gvG9nUFj+rxQf2TaRUdI4Bcj3vEkc0XU2WWr2g6tiA+TZCKsZk0v7P5FAeFG4h7g==
+  dependencies:
+    "@polkadot/api" "^9.1.1"
+
+"@polkadot-onboard/core@^0.0.2-beta":
+  version "0.0.2-beta"
+  resolved "https://registry.yarnpkg.com/@polkadot-onboard/core/-/core-0.0.2-beta.tgz#bc41f38e4c16130667358022075a61030b8a4a49"
+  integrity sha512-YjxxBqWaqXBrVNC7znYgt4U1tBPEKvvPcn7dCMt000/Vmz4x3oVI5Qf+C5kBy8KHF63VEcgghJoL3WLXlAYEPA==
+  dependencies:
+    "@polkadot/api" "^9.1.1"
+
+"@polkadot-onboard/injected-wallets@^0.0.2-beta":
+  version "0.0.2-beta"
+  resolved "https://registry.yarnpkg.com/@polkadot-onboard/injected-wallets/-/injected-wallets-0.0.2-beta.tgz#725b98b19fbbf4299b4fbeffeee7acc8785f316a"
+  integrity sha512-MgXgQECVCh2XViW1zXTusyPxwEIiancF0pFiuNUUut2E0aH7X8BBKQGqpYsk4iVY8LiZvvURz43MaoT6ibnzQA==
+  dependencies:
+    "@polkadot-onboard/core" "^0.0.1-beta"
+    "@polkadot/api" "^9.1.1"
+    "@polkadot/extension-inject" "^0.44.4"
+
+"@polkadot-onboard/react@^0.0.2-beta":
+  version "0.0.2-beta"
+  resolved "https://registry.yarnpkg.com/@polkadot-onboard/react/-/react-0.0.2-beta.tgz#375673bf37e44f4b24189525a872b038f3d1c310"
+  integrity sha512-wy6bRgYwFUxcLmUzRDaVimZ0x31N1scvt9ZxRcJ8OCrF1gASmMIfwy/LHWyIBlkWpeLNStsP8lqgcu6pmZU2HQ==
+  dependencies:
+    "@polkadot-onboard/core" "^0.0.1-beta"
+    "@polkadot/extension-inject" "^0.44.4"
+    react "^18.2.0"
+    react-dom "^18.2.0"
+
+"@polkadot-onboard/wallet-connect@^0.0.2-beta":
+  version "0.0.2-beta"
+  resolved "https://registry.yarnpkg.com/@polkadot-onboard/wallet-connect/-/wallet-connect-0.0.2-beta.tgz#935dbddaecf649c397c52825f2dc050eec96a959"
+  integrity sha512-f+BrQkbLtIZPQ0EZA/13V21QUY4Z9f8AKRaRAURdV4hEaSF6t0JZB1Dvs6h65VSomXkdsVDW0GJhCQXWWzhFhA==
+  dependencies:
+    "@polkadot-onboard/core" "^0.0.1-beta"
+    "@polkadot/api" "^9.1.1"
+    "@walletconnect/qrcode-modal" "^1.8.0"
+    "@walletconnect/sign-client" "2.0.0-rc.1"
+
 "@polkadot/api-augment@9.4.3":
   version "9.4.3"
   resolved "https://registry.yarnpkg.com/@polkadot/api-augment/-/api-augment-9.4.3.tgz#8d325e3686ea6bad92f0089af062649d33313afd"
@@ -4986,9 +5029,9 @@ json-stringify-safe@^5.0.1:
   integrity sha512-ZClg6AaYvamvYEE82d3Iyd3vSSIjQ+odgjaTzRuO3s7toCdFKczob2i0zCh7JE8kWn17yvAWhUVxvqGwUalsRA==
 
 json5@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/json5/-/json5-1.0.1.tgz#779fb0018604fa854eacbf6252180d83543e3dbe"
-  integrity sha512-aKS4WQjPenRxiQsC93MNfjx+nbF4PAdYzmd/1JIj8HYzqfbu86beTuNgXDzPknWk0n0uARlyewZo4s++ES36Ow==
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/json5/-/json5-1.0.2.tgz#63d98d60f21b313b77c4d6da18bfa69d80e1d593"
+  integrity sha512-g1MWMLBiz8FKi1e4w0UyVL3w+iJceWAFBAaBnnGKOpNa5f8TLktkbre1+s6oICydWAm+HRUGTmI+//xv2hvXYA==
   dependencies:
     minimist "^1.2.0"
 
